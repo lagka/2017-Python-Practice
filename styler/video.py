@@ -27,10 +27,19 @@ class Video:
          - Return your results
         '''
         frames = []
+        while True:
+                retval,temp=self.cap.read()
+                if retval==True:
+                    frame=resize(temp,image_h,image_w)
+                    frames.append(frame)
+                    #if cv2.waitKey(1) & 0xFF==ord('q'):
+                       # break
+                else :
+                    break;
+                    
         # 5-1 /5-2 Read video and collect them
-
-        self.frames = ...  # 5-3 let object have the result
-        return ...  # return your results
+        self.frames = frames  # 5-3 let object have the result
+        return self.frames  # return your results
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.cap.release()
